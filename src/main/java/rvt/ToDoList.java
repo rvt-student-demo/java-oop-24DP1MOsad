@@ -6,44 +6,27 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ToDoList {
-    
-    public void add(String text) {
-        try (FileWriter writer = new FileWriter("data/todo.csv", true)) {
-            writer.write(text);
-            writer.write(System.lineSeparator());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-    public void print() {
-        try (Scanner reader = new Scanner(new File("data/todo.csv"))) {
-            int x = 1;
-            while (reader.hasNextLine()) {
-                String row = reader.nextLine();
-                System.out.println(x + ": " + row);
-                x++;
+public class TodoList {
+    private final String filePath = "data/todo.csv";
+    private final ArrayList<String> list = new ArrayList<>();
+
+    public TodoList() {
+        try (Scanner reader = new Scanner(new File(filePath))) {
+            if (reader.hasNextLine()) {
+                reader.nextLine();
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    public void remove(int number) {
-        ArrayList<String> list = new ArrayList<>();
-
-        try (Scanner reader = new Scanner(new File("data/todo.csv"))) {
             while (reader.hasNextLine()) {
                 list.add(reader.nextLine());
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
-            return;
         }
+    }
 
-        list.remove(number - 1);
-
-        try (FileWriter writer = new FileWriter("data/todo.csv")) {
+    private void save() {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write("id,task");
+            writer.write(System.lineSeparator());
             for (String row : list) {
                 writer.write(row);
                 writer.write(System.lineSeparator());
@@ -52,27 +35,31 @@ public class ToDoList {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    // public void remove(int number) {
-    //     try (Scanner reader = new Scanner(new File("data/todo.csv"))) {
-    //         ArrayList<String> list = new ArrayList<>();
 
-    //         while (reader.hasNextLine()) {
-    //             String row = reader.nextLine();
-    //             list.add(row);
-    //         }
+    public void add(String text) {
+        int id = 1;
+        if (!list.isEmpty()) {
+            String[] row = list.get(list.size() - 1).split(",");
+            id = Integer.valueOf(row[0]) + 1;
+        }
+        list.add((id) + "," + text);
+        save();
+    }
 
-    //         list.remove(number - 1);
+    public void print() {
+        for (String row: list) {
+            System.out.println(row);
+        }
+    }
 
-    //         for (String row : list) {
-    //             try (FileWriter writer = new FileWriter("data/todo.csv")) {
-    //                 writer.write(row);
-    //                 writer.write(System.lineSeparator());
-    //             } catch (Exception e) {
-    //                 System.out.println("Error: " + e.getMessage());
-    //             }
-    //         }
-    //     } catch (FileNotFoundException e) {
-    //         System.out.println("Error: " + e.getMessage());
-    // }
-    // }
+    public void remove(int id) {
+        for (int i = 0; i < list.size(); i++) {
+            String[] row = list.get(i).split(",");
+            if (Integer.valueOf(row[0]) == id){
+                list.remove(i);
+                break;
+            }
+        }
+        save();
+    }
 }

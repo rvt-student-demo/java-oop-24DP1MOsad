@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ToDoList list = new ToDoList();
+        TodoList list = new TodoList();
         UserInterface n = new UserInterface(list, scanner);
         n.start();
     }

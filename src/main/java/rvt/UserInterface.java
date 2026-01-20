@@ -3,10 +3,10 @@ package rvt;
 import java.util.Scanner;
 
 public class UserInterface {
-    ToDoList list;
+    TodoList list;
     Scanner scanner;
 
-    public UserInterface(ToDoList list, Scanner scanner) {
+    public UserInterface(TodoList list, Scanner scanner) {
         this.list = list;
         this.scanner = scanner;
     }
@@ -27,7 +27,7 @@ public class UserInterface {
                 System.out.println("Which one is removed?");
                 list.remove(Integer.valueOf(scanner.nextLine()));
             } else {
-                System.out.println("X");
+                System.out.println("Nav tada command");
             }
         }
     }
