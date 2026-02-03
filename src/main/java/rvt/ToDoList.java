@@ -37,13 +37,19 @@ public class TodoList {
     }
 
     public void add(String text) {
-        int id = 1;
-        if (!list.isEmpty()) {
-            String[] row = list.get(list.size() - 1).split(",");
-            id = Integer.valueOf(row[0]) + 1;
+        String input = text.trim();
+        if (checkEventString(input) == true){
+            int id = 1;
+            if (!list.isEmpty()) {
+                String[] row = list.get(list.size() - 1).split(",");
+                id = Integer.valueOf(row[0]) + 1;
+            }
+            list.add((id) + "," + text);
+            save();
+        } else {
+            System.out.println("Nederigaievade!");
         }
-        list.add((id) + "," + text);
-        save();
+       
     }
 
     public void print() {
@@ -62,4 +68,13 @@ public class TodoList {
         }
         save();
     }
+
+    public boolean checkEventString(String value) {
+        final String regex = "^[a-zA-Z0-9 ]+$";
+        if (value.length() < 3) {
+            return false;
+        } else {
+            return value.matches(regex);
+        }
+}
 }
