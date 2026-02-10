@@ -54,6 +54,7 @@ public class Function {
         if (checker.checkPersonCode(code)) {
             if (searchStudent(code) != -1) {
                 students.remove(searchStudent(code));
+                System.out.println("Students bija dzests.");
             } else {
                 System.out.println("Tads student neeksiste.");
             }
@@ -111,6 +112,7 @@ public class Function {
         Student student = new Student(firstName, lastName, email, personalCode, String.valueOf(LocalDateTime.now()));
         students.add(student);
         save();
+        System.out.println("Students bija izvejdots");
     }
 
 }
