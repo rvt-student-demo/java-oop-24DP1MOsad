@@ -19,13 +19,13 @@ public class Interface {
             System.out.println("Command: ");
             command = scanner.nextLine();
             if (command.equals("register")){
-
+                f.register();
             } else if(command.equals("show")) {
 
             } else if(command.equals("remove")) {
-
+                f.remove();
             } else if(command.equals("edit")) {
-
+                f.edit();
             } else if(command.equals("exit")) {
                 break;
             } else {

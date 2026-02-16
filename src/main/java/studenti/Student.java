@@ -1,11 +1,11 @@
 package studenti;
 
 public class Student {
-    String firstName;
-    String lastName;
-    String email;
-    String personalCode;
-    String registrationDateTime;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String personalCode;
+    private String registrationDateTime;
 
     public Student(String firstName, String lastName, String email, String personalCode, String registrationDateTime) {
         this.firstName = firstName;
@@ -25,5 +25,11 @@ public class Student {
 
     public String getPersonalCode() {
         return personalCode;
+    }
+
+    public void editStudent(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 }

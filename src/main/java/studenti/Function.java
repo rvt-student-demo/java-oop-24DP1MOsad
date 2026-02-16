@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Function {
     private final String filePath = "data/student.csv";
-    private final ArrayList<Student> students = new ArrayList<>();
+    private ArrayList<Student> students = new ArrayList<>();
     Scanner scanner;
     Regex checker;
 
@@ -41,7 +41,7 @@ public class Function {
 
     private int searchStudent(String code) {
         for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getPersonalCode() == code) {
+            if (students.get(i).getPersonalCode().equals(code)) {
                 return i;
             }
         }
@@ -115,4 +115,53 @@ public class Function {
         System.out.println("Students bija izvejdots");
     }
 
+    public void edit() {
+        System.out.println("Ievadi personal kodu: ");
+        String code = scanner.nextLine();
+        if (checker.checkPersonCode(code)) {
+            if (searchStudent(code) != -1) {
+                String firstName;
+                String lastName;
+                String email;
+
+                while (true) {
+                    System.out.println("Ievadi vardu:");
+                    firstName = scanner.nextLine();
+
+                    if (checker.checkWord(firstName)) {
+                        break;
+                    }
+                    System.out.println("Vards nav korekts. Megini velreiz.");
+                }
+
+                while (true) {
+                    System.out.println("Ievadi uzvardu:");
+                    lastName = scanner.nextLine();
+
+                    if (checker.checkWord(lastName)) {
+                        break;
+                    }
+                    System.out.println("Uzvards nav korekts. Megini velreiz.");
+                }
+
+                while (true) {
+                    System.out.println("Ievadi e-pastu:");
+                    email = scanner.nextLine();
+
+                    if (checker.checkEmail(email)) {
+                        break;
+                    }
+                    System.out.println("E-pasts nav korekts. Megini velreiz.");
+                }
+
+                students.get(searchStudent(code)).editStudent(firstName, lastName, email);
+
+            } else {
+                System.out.println("Tads student neeksiste.");
+            }
+        } else {
+            System.out.println("Nepareizi ierakstits personal kods.");
+        }
+        save();
+    }
 }
