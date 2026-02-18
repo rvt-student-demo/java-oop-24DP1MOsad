@@ -32,4 +32,16 @@ public class Student {
         this.lastName = lastName;
         this.email = email;
     }
+
+    public void editFirstname(String firstname) {
+        this.firstName = firstname;
+    }
+
+    public void editLastname(String lastname) {
+        this.lastName = lastname;
+    }
+
+    public void editEmail(String email) {
+        this.email = email;
+    }
 }
