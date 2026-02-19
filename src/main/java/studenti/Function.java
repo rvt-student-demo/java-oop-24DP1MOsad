@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import rvt.utils.ConsoleColors;
+
 public class Function {
     private final String filePath = "data/student.csv";
     private ArrayList<Student> students = new ArrayList<>();
@@ -200,6 +202,8 @@ public class Function {
 
     public void show(){
         String line = "+" + "-".repeat(20) + "+" + "-".repeat(20) + "+" + "-".repeat(30) + "+" + "-".repeat(15) + "+";
+        System.out.println(ConsoleColors.YELLOW_BACKGROUND.code);
+        System.out.println(ConsoleColors.RED.code);
 
         System.out.println(line);
         System.out.printf("|%-20s|%-20s|%-30s|%-15s|%n", "Firstname", "Lastname", "Email", "Personalcode");
@@ -210,5 +214,6 @@ public class Function {
         }
 
         System.out.println(line);
+        System.out.println(ConsoleColors.COLOR_END.code);
     }
 }
