@@ -94,19 +94,43 @@ public class Function {
             System.out.println("Ievadi e-pastu:");
             email = scanner.nextLine();
 
-            if (checker.checkEmail(email)) {
-                break;
+            if (!checker.checkEmail(email)) {
+                System.out.println("E-pasts nav korekts. Megini velreiz.");
+                continue;
             }
-            System.out.println("E-pasts nav korekts. Megini velreiz.");
+            
+            boolean dublicate = false;
+            
+            for (int i = 0; i < students.size(); i++) {
+                if (students.get(i).getEmail().equals(email)) {
+                    dublicate = true;
+                    break;
+                }
+            }
+
+            if (dublicate) {
+                System.out.println("Tads email jau eksiste.");
+                continue;
+            }
+
+            break;
         }
+
         while (true) {
             System.out.println("Ievadi personal kodu:");
             personalCode = scanner.nextLine();
 
-            if (checker.checkPersonCode(personalCode)) {
-                break;
+            if (!checker.checkPersonCode(personalCode)) {
+                System.out.println("Personal kods nav korekts. Megini velreiz.");
+                continue;
             }
-            System.out.println("Personal kods nav korekts. Megini velreiz.");
+
+            if (searchStudent(personalCode) != -1){
+                System.out.println("Tads person code jau eksiste.");
+                continue;
+            }
+
+            break;
         }
 
         Student student = new Student(firstName, lastName, email, personalCode, String.valueOf(LocalDateTime.now()));
@@ -119,42 +143,51 @@ public class Function {
         System.out.println("Ievadi personal kodu: ");
         String code = scanner.nextLine();
         if (checker.checkPersonCode(code)) {
-            if (searchStudent(code) != -1) {
+            int studentID = searchStudent(code);
+            if (studentID != -1) {
                 String firstName;
                 String lastName;
                 String email;
 
-                while (true) {
-                    System.out.println("Ievadi vardu:");
-                    firstName = scanner.nextLine();
+                System.out.println("Ko tu gribi izmainit: firstname, lastname, email?");
+                String comand = scanner.nextLine();
 
-                    if (checker.checkWord(firstName)) {
-                        break;
+                if (comand.equals("firstname")) {
+                    while (true) {
+                        System.out.println("Ievadi vardu:");
+                        firstName = scanner.nextLine();
+
+                        if (checker.checkWord(firstName)) {
+                            break;
+                        }
+                        System.out.println("Vards nav korekts. Megini velreiz.");
                     }
-                    System.out.println("Vards nav korekts. Megini velreiz.");
-                }
+                    students.get(studentID).editFirstname(firstName);
+                } else if (comand.equals("lastname")) {
+                    while (true) {
+                        System.out.println("Ievadi uzvardu:");
+                        lastName = scanner.nextLine();
 
-                while (true) {
-                    System.out.println("Ievadi uzvardu:");
-                    lastName = scanner.nextLine();
-
-                    if (checker.checkWord(lastName)) {
-                        break;
+                        if (checker.checkWord(lastName)) {
+                            break;
+                        }
+                        System.out.println("Uzvards nav korekts. Megini velreiz.");
                     }
-                    System.out.println("Uzvards nav korekts. Megini velreiz.");
-                }
+                    students.get(studentID).editLastname(lastName);
+                } else if (comand.equals("email")) {
+                    while (true) {
+                        System.out.println("Ievadi e-pastu:");
+                        email = scanner.nextLine();
 
-                while (true) {
-                    System.out.println("Ievadi e-pastu:");
-                    email = scanner.nextLine();
-
-                    if (checker.checkEmail(email)) {
-                        break;
+                        if (checker.checkEmail(email)) {
+                            break;
+                        }
+                        System.out.println("E-pasts nav korekts. Megini velreiz.");
                     }
-                    System.out.println("E-pasts nav korekts. Megini velreiz.");
+                    students.get(studentID).editEmail(email);
+                } else {
+                    System.out.println("Ta komanda ne eksiste!");
                 }
-
-                students.get(searchStudent(code)).editStudent(firstName, lastName, email);
 
             } else {
                 System.out.println("Tads student neeksiste.");
