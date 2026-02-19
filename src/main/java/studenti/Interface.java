@@ -21,7 +21,7 @@ public class Interface {
             if (command.equals("register")){
                 f.register();
             } else if(command.equals("show")) {
-
+                f.show();
             } else if(command.equals("remove")) {
                 f.remove();
             } else if(command.equals("edit")) {

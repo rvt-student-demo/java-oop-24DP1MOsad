@@ -27,6 +27,18 @@ public class Student {
         return personalCode;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public void editStudent(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;

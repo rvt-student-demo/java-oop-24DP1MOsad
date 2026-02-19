@@ -164,4 +164,18 @@ public class Function {
         }
         save();
     }
+
+    public void show(){
+        String line = "+" + "-".repeat(20) + "+" + "-".repeat(20) + "+" + "-".repeat(30) + "+" + "-".repeat(15) + "+";
+
+        System.out.println(line);
+        System.out.printf("|%-20s|%-20s|%-30s|%-15s|%n", "Firstname", "Lastname", "Email", "Personalcode");
+        System.out.println(line);
+
+        for(Student student: students) {
+            System.out.printf("|%-20s|%-20s|%-30s|%-15s|%n", student.getFirstName(), student.getLastName(), student.getEmail(), student.getPersonalCode());
+        }
+
+        System.out.println(line);
+    }
 }
