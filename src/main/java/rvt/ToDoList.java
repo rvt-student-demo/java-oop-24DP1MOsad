@@ -6,17 +6,20 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TodoList {
-    private final String filePath = "data/todo.csv";
-    private final ArrayList<String> list = new ArrayList<>();
+import javax.swing.JFrame;
 
+public class TodoList extends JFrame{
+    private final String filePath = "data/todo.csv";
+    private final ArrayList<String[]> list = new ArrayList<>();
+    
     public TodoList() {
         try (Scanner reader = new Scanner(new File(filePath))) {
             if (reader.hasNextLine()) {
                 reader.nextLine();
             }
             while (reader.hasNextLine()) {
-                list.add(reader.nextLine());
+                String row = reader.nextLine();
+                list.add(row.split(","));
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
@@ -53,7 +56,7 @@ public class TodoList {
     }
 
     public void print() {
-        for (String row: list) {
+        for (String[] row: list) {
             System.out.println(row);
         }
     }
