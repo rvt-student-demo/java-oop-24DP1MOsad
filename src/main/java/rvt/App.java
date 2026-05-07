@@ -1,16 +1,13 @@
 package rvt;
 
-import javax.swing.JFrame;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Happy Coding");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(200, 200);
-		GrafiskaisPanelis grafiks = new GrafiskaisPanelis();
-        frame.add(grafiks);
-        
-        frame.setVisible(true);
+		Scanner scanner = new Scanner(System.in);
+        ToDoList list = new ToDoList();
+        UserInterface i = new UserInterface(list, scanner);
+        i.start();
 	}
 }
 

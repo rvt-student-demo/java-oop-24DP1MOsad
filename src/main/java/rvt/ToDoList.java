@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
-public class TodoList extends JFrame{
+public class ToDoList extends JFrame{
     private final String filePath = "data/todo.csv";
     private final ArrayList<String[]> list = new ArrayList<>();
     
-    public TodoList() {
+    public ToDoList() {
         try (Scanner reader = new Scanner(new File(filePath))) {
             if (reader.hasNextLine()) {
                 reader.nextLine();
@@ -55,10 +57,14 @@ public class TodoList extends JFrame{
        
     }
 
-    public void print() {
+    public JTextArea print() {
+        JTextArea textArea;
+        String rows = "";
         for (String[] row: list) {
-            System.out.println(row);
+            rows += row[0] + " " + row[1] + "\n";
         }
+        textArea = new JTextArea(rows);
+        return textArea;
     }
 
     public void remove(int id) {
