@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 public class ToDoList extends JFrame{
@@ -57,14 +58,16 @@ public class ToDoList extends JFrame{
        
     }
 
-    public JTextArea print() {
-        JTextArea textArea;
-        String rows = "";
-        for (String[] row: list) {
-            rows += row[0] + " " + row[1] + "\n";
+    public JTable createTable() {
+        String[] columnNames = { "ID", "Task"};
+        String[][] data = new String[list.size()][2];
+        for (int i = 0; i < list.size(); i++) {
+            data[i][0] = list.get(i)[0];
+            data[i][1] = list.get(i)[1];
         }
-        textArea = new JTextArea(rows);
-        return textArea;
+        JTable table = new JTable(data, columnNames);
+        table.setBounds(30, 40, 200, 300);
+        return table;
     }
 
     public void remove(int id) {

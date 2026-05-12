@@ -3,7 +3,8 @@ package rvt;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class UserInterface {
     ToDoList list;
@@ -17,10 +18,18 @@ public class UserInterface {
     public void start() {
         JFrame frame = new JFrame("Happy Coding");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JTextArea rows = list.print();
-        frame.add(rows);
-        frame.setSize(300, 300);	
-		frame.setVisible(true);
+        JTable table = list.createTable();
+        // adding it to JScrollPane
+        JScrollPane sp = new JScrollPane(table);
+        frame.add(sp);
+        // Frame Size
+        frame.setSize(500, 200);
+        // Frame Visible = true
+        frame.setVisible(true);
+        
+    }
+}
+
         // String command;
         // while(true) {
         //     System.out.println("Command: ");
@@ -39,5 +48,3 @@ public class UserInterface {
         //         System.out.println("Nav tada command");
         //     }
         // }
-    }
-}
