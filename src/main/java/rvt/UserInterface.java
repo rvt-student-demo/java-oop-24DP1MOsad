@@ -1,30 +1,37 @@
 package rvt;
 
-import java.util.Scanner;
+import java.awt.BorderLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class UserInterface {
     ToDoList list;
-    Scanner scanner;
 
-    public UserInterface(ToDoList list, Scanner scanner) {
+    public UserInterface(ToDoList list) {
         this.list = list;
-        this.scanner = scanner;
     }
 
     public void start() {
         JFrame frame = new JFrame("Happy Coding");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTable table = list.createTable();
-        // adding it to JScrollPane
         JScrollPane sp = new JScrollPane(table);
-        frame.add(sp);
-        // Frame Size
+        
+        JPanel panel = new JPanel();
+        JTextField textField = new JTextField(20);
+        JButton button = new JButton("Add");
+        panel.add(sp);
+        panel.add(textField);
+        panel.add(button);
+        frame.add(panel);
+
+        
         frame.setSize(500, 200);
-        // Frame Visible = true
         frame.setVisible(true);
         
     }

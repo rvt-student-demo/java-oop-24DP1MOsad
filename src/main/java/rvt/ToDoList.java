@@ -29,34 +29,34 @@ public class ToDoList extends JFrame{
         }
     }
 
-    private void save() {
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("id,task");
-            writer.write(System.lineSeparator());
-            for (String row : list) {
-                writer.write(row);
-                writer.write(System.lineSeparator());
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
+    // private void save() {
+    //     try (FileWriter writer = new FileWriter(filePath)) {
+    //         writer.write("id,task");
+    //         writer.write(System.lineSeparator());
+    //         for (String row : list) {
+    //             writer.write(row);
+    //             writer.write(System.lineSeparator());
+    //         }
+    //     } catch (Exception e) {
+    //         System.out.println("Error: " + e.getMessage());
+    //     }
+    // }
 
-    public void add(String text) {
-        String input = text.trim();
-        if (checkEventString(input) == true){
-            int id = 1;
-            if (!list.isEmpty()) {
-                String[] row = list.get(list.size() - 1).split(",");
-                id = Integer.valueOf(row[0]) + 1;
-            }
-            list.add((id) + "," + text);
-            save();
-        } else {
-            System.out.println("Nederigaievade!");
-        }
+    // public void add(String text) {
+    //     String input = text.trim();
+    //     if (checkEventString(input) == true){
+    //         int id = 1;
+    //         if (!list.isEmpty()) {
+    //             String[] row = list.get(list.size() - 1).split(",");
+    //             id = Integer.valueOf(row[0]) + 1;
+    //         }
+    //         list.add((id) + "," + text);
+    //         save();
+    //     } else {
+    //         System.out.println("Nederigaievade!");
+    //     }
        
-    }
+    // }
 
     public JTable createTable() {
         String[] columnNames = { "ID", "Task"};
@@ -70,16 +70,16 @@ public class ToDoList extends JFrame{
         return table;
     }
 
-    public void remove(int id) {
-        for (int i = 0; i < list.size(); i++) {
-            String[] row = list.get(i).split(",");
-            if (Integer.valueOf(row[0]) == id){
-                list.remove(i);
-                break;
-            }
-        }
-        save();
-    }
+    // public void remove(int id) {
+    //     for (int i = 0; i < list.size(); i++) {
+    //         String[] row = list.get(i).split(",");
+    //         if (Integer.valueOf(row[0]) == id){
+    //             list.remove(i);
+    //             break;
+    //         }
+    //     }
+    //     save();
+    // }
 
     public boolean checkEventString(String value) {
         final String regex = "^[a-zA-Z0-9 ]+$";
