@@ -2,14 +2,12 @@ package rvt;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+// import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 
 public class ToDoList extends JFrame{
     private final String filePath = "data/todo.csv";
@@ -66,7 +64,7 @@ public class ToDoList extends JFrame{
             data[i][1] = list.get(i)[1];
         }
         JTable table = new JTable(data, columnNames);
-        table.setBounds(30, 40, 200, 300);
+        table.setBounds(30, 40, 50, 50);
         return table;
     }
 

@@ -1,7 +1,7 @@
 package rvt;
 
-import java.awt.BorderLayout;
-
+import java.awt.Dimension;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,19 +21,21 @@ public class UserInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTable table = list.createTable();
         JScrollPane sp = new JScrollPane(table);
+        sp.setPreferredSize(new Dimension(1000, 400)); // +
         
         JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // +
         JTextField textField = new JTextField(20);
         JButton button = new JButton("Add");
         panel.add(sp);
-        panel.add(textField);
-        panel.add(button);
+        JPanel inputPanel = new JPanel();   //+-
+        inputPanel.add(textField);
+        inputPanel.add(button);
+        panel.add(inputPanel);              //+-
         frame.add(panel);
-
         
         frame.setSize(500, 200);
         frame.setVisible(true);
-        
     }
 }
 
