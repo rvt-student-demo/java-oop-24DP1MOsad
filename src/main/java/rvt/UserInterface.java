@@ -10,50 +10,45 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class UserInterface {
-    ToDoList list;
+    private ToDoList list;
+    private JFrame window;
 
     public UserInterface(ToDoList list) {
-        this.list = list;
+        list = new ToDoList();
+        initialize();
+    }
+
+    private void initialize() {
+        window = new JFrame("Todo App");
+        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        window.setSize(1024, 768);
+        window.setResizable(false);
+        window.setLocationRelativeTo(null);
+    }
+
+    public void show() {
+        window.setVisible(true);
     }
 
     public void start() {
         JFrame frame = new JFrame("Happy Coding");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTable table = list.createTable();
         JScrollPane sp = new JScrollPane(table);
         sp.setPreferredSize(new Dimension(1000, 400)); // +
-        
+
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // +
         JTextField textField = new JTextField(20);
         JButton button = new JButton("Add");
         panel.add(sp);
-        JPanel inputPanel = new JPanel();   //+-
+        JPanel inputPanel = new JPanel(); // +-
         inputPanel.add(textField);
         inputPanel.add(button);
-        panel.add(inputPanel);              //+-
+        panel.add(inputPanel); // +-
         frame.add(panel);
-        
+
         frame.setSize(500, 200);
         frame.setVisible(true);
     }
 }
-
-        // String command;
-        // while(true) {
-        //     System.out.println("Command: ");
-        //     command = scanner.nextLine();
-        //     if (command.equals("stop")) {
-        //         break;
-        //     } else if (command.equals("add")) {
-        //         System.out.println("To add: ");
-        //         list.add(scanner.nextLine());
-        //     } else if (command.equals("list")) {
-        //         list.print();
-        //     } else if (command.equals("remove")) {
-        //         System.out.println("Which one is removed?");
-        //         list.remove(Integer.valueOf(scanner.nextLine()));
-        //     } else {
-        //         System.out.println("Nav tada command");
-        //     }
-        // }
